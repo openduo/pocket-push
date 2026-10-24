@@ -1,0 +1,11 @@
+pocket-push
+Copyright 2026 openduo
+
+The source code in this repository is licensed under FSL-1.1-Apache-2.0 (see LICENSE).
+
+Brand assets are excluded from that licence. They are OpenDuo brand assets with no open licence,
+and forks must replace them: the 多多 / DuoDuo and OpenDuo names, and the relay's address
+(pocket-push.openduo.app). The relay only reaches the DuoDuo Pocket app with OpenDuo's Apple push
+keys, which are not part of this repository; a fork serves its own app with its own keys.
+
+The relay bundles no third-party code; its development tools keep their own licences.

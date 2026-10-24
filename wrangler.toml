@@ -1,0 +1,25 @@
+# Deploy only with an explicit config: `pnpm run dry-run`, then `pnpm run deploy`.
+name = "pocket-push"
+main = "src/index.ts"
+compatibility_date = "2026-10-01"
+workers_dev = false
+routes = [{ pattern = "pocket-push.openduo.app", zone_name = "openduo.app", custom_domain = true }]
+
+# The relay keeps nothing: no request logs, no traces.
+[observability]
+enabled = false
+
+[vars]
+APNS_TOPIC = "dev.openduo.pocket"
+# Owner's choice: a grant lives 7 days. The app renews it on every launch and background refresh,
+# so a phone that opens the app or refreshes at least once a week never loses push.
+GRANT_LIFETIME_S = "604800"
+RELAY_KEY_CURRENT = "k1"
+
+# Per phone: only 多多's final messages push, and a conversation seldom passes a few a minute.
+# The limit stops one leaked grant from draining the account's daily request quota. Cloudflare's
+# rate-limit binding accepts a 10 s or 60 s period.
+[[ratelimits]]
+name = "PUSH_LIMIT"
+namespace_id = "1001"
+simple = { limit = 20, period = 60 }

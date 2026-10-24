@@ -1,0 +1,8 @@
+node_modules/
+dist/
+.wrangler/
+.dev.vars
+.env*
+*.p8
+CLAUDE.local.md
+.agents/
